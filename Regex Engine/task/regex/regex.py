@@ -20,6 +20,15 @@ def comparator(regex, input):
     return comparator(regex[1:], input[1:])
 
 
+def regular_express(regex, input):
+    if regex == '':
+        return True
+    for i in range(len(input)):
+        if comparator(regex, input[i:]) is True:
+            return True
+    return False
+
+
 if __name__ == "__main__":
     parameters = input().split('|')
-    print(comparator(parameters[0], parameters[1]))
+    print(regular_express(parameters[0], parameters[1]))
