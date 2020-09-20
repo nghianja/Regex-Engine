@@ -13,6 +13,8 @@ def compare(regex, input):
 def comparator(regex, input):
     if regex == '':
         return True
+    if regex == '$' and input == '':
+        return True
     if input == '':
         return False
     if compare(regex[0], input[0]) is False:
@@ -23,6 +25,8 @@ def comparator(regex, input):
 def regular_express(regex, input):
     if regex == '':
         return True
+    if regex[0] == '^':
+        return comparator(regex[1:], input)
     for i in range(len(input)):
         if comparator(regex, input[i:]) is True:
             return True
