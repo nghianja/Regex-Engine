@@ -14,6 +14,11 @@ def comparator(regex, input):
     if input == '':
         return False
     if len(regex) > 1:
+        if regex[0] == '\\':
+            if compare(regex[1], input[0]) is True:
+                return comparator(regex[2:], input[1:])
+            else:
+                return False
         if (regex[1] == '?' or regex[1] == '*') and compare(regex[0], input[0]) is False:
             return comparator(regex[2:], input)
         if regex[1] == '?' and compare(regex[0], input[0]) is True:
